@@ -1,0 +1,528 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+*{
+    padding:0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', 'sans-serif';
+    font-size: normal;
+    line-height: normal;
+}
+body{
+    background-color: #080808;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+main{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100vw;
+    height: 100vh;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    animation: fadeIn 0.6s ease;
+}
+@keyframes fadeIn{
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+main.clouds{
+    background-image: url('../img/cloudy.jpeg');
+}
+main.sunny{
+    background-image: url('../img/sunny.jpeg');
+}
+main.overcast{
+    background-image: url('../img/overcast.jpeg');
+}
+main.mist,
+main.Mist,
+main.haze,
+main.smoke{
+    background-image: url('../img/mist.jpeg');
+}
+
+main.rain{
+    background-image: url('../img/rain.jpeg');
+}
+
+main.snow{
+    background-image: url('../img/snow.jpeg');
+}
+main.sleet{
+    background-image: url('../img/sleet.jpeg');
+}
+main.drizzle{
+    background-image: url('../img/drizzle.jpeg');
+}
+main.thunder,
+main.thundery{
+    background-image: url('../img/thunder.jpeg');
+}
+main.blizzard{
+    background-image: url('../img/.blizzard.jpeg');
+}
+main.fog{
+    background-image: url('../img/fog.jpeg');
+}
+
+main.ice{
+    background-image: url('../img/ice.jpeg');
+}
+main.shower{
+    background-image: url('../img/shower.jpeg');
+}
+main.showers{
+    background-image: url('../img/showers.jpeg');
+}
+main.clear{
+    background-image: url('../img/clear.jpeg');
+}
+
+/* moving clouds: slowly pan the background for any cloud-heavy condition */
+main.clouds,
+main.overcast,
+main.mist,
+main.Mist,
+main.haze,
+main.smoke,
+main.fog{
+    background-size: 130% auto;
+    animation: fadeIn 0.6s ease, driftClouds 45s linear infinite alternate;
+}
+@keyframes driftClouds{
+    from{ background-position: 0% 50%; }
+    to{ background-position: 100% 50%; }
+}
+
+/* glowing, gently pulsing sun disc for clear/sunny skies, daytime only */
+main.sunny.day::before,
+main.clear.day::before{
+    content: "";
+    position: absolute;
+    top: -6%;
+    right: -6%;
+    width: 24%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at 38% 38%,
+        #fffdf3 0%,
+        #ffedb0 30%,
+        #ffcf5e 55%,
+        rgba(255, 207, 94, 0) 75%
+    );
+    box-shadow: 0 0 70px 22px rgba(255, 220, 140, 0.45);
+    z-index: 1;
+    pointer-events: none;
+    animation: sunPulse 6s ease-in-out infinite;
+}
+@keyframes sunPulse{
+    0%, 100%{
+        transform: scale(1);
+        box-shadow: 0 0 70px 22px rgba(255, 220, 140, 0.45);
+    }
+    50%{
+        transform: scale(1.06);
+        box-shadow: 0 0 90px 30px rgba(255, 220, 140, 0.6);
+    }
+}
+
+/* slow drifting sky pan for clear/sunny conditions, day and night */
+main.sunny,
+main.clear{
+    background-size: 118% auto;
+    animation: fadeIn 0.6s ease, driftSky 60s ease-in-out infinite alternate;
+}
+@keyframes driftSky{
+    from{ background-position: 40% 30%; }
+    to{ background-position: 60% 70%; }
+}
+
+/* clear/sunny skies at night: darken the same photo into a night sky and twinkle stars instead of rays */
+main.sunny.night::before,
+main.clear.night::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(4, 8, 34, 0.55), rgba(4, 10, 40, 0.8));
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 1;
+}
+main.sunny.night::after,
+main.clear.night::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(1.6px 1.6px at 8% 18%, #fff, transparent 60%),
+        radial-gradient(1.2px 1.2px at 22% 42%, #fff, transparent 60%),
+        radial-gradient(1.6px 1.6px at 38% 12%, #fff, transparent 60%),
+        radial-gradient(1.2px 1.2px at 52% 55%, #fff, transparent 60%),
+        radial-gradient(1.6px 1.6px at 68% 22%, #fff, transparent 60%),
+        radial-gradient(1.2px 1.2px at 80% 48%, #fff, transparent 60%),
+        radial-gradient(1.6px 1.6px at 92% 15%, #fff, transparent 60%),
+        radial-gradient(1.2px 1.2px at 15% 68%, #fff, transparent 60%),
+        radial-gradient(1.6px 1.6px at 62% 78%, #fff, transparent 60%),
+        radial-gradient(1.2px 1.2px at 30% 85%, #fff, transparent 60%);
+    background-repeat: no-repeat;
+    mix-blend-mode: screen;
+    animation: twinkle 3.2s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 1;
+}
+@keyframes twinkle{
+    from{ opacity: 0.35; }
+    to{ opacity: 1; }
+}
+
+/* soft drizzle overlay for any precipitation condition: small, blurred falling droplets, not hard streak lines */
+main.rain::before,
+main.drizzle::before,
+main.shower::before,
+main.showers::before,
+main.thunder::before,
+main.thundery::before,
+main.sleet::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(1.6px 13px at 18% 20%, rgba(205, 222, 245, 0.22), transparent 75%),
+        radial-gradient(1.3px 10px at 52% 60%, rgba(205, 222, 245, 0.18), transparent 75%),
+        radial-gradient(1.6px 15px at 82% 40%, rgba(205, 222, 245, 0.2), transparent 75%),
+        radial-gradient(1.3px 11px at 34% 88%, rgba(205, 222, 245, 0.16), transparent 75%);
+    background-repeat: repeat;
+    background-size: 110px 160px;
+    animation: drizzle-back 3.4s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+@keyframes drizzle-back{
+    from{ background-position: 0 -160px; }
+    to{ background-position: 0 0; }
+}
+
+/* softly closer, slightly faster drizzle layer for depth */
+main.rain::after,
+main.drizzle::after,
+main.shower::after,
+main.showers::after,
+main.thunder::after,
+main.thundery::after,
+main.sleet::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(1.4px 9px at 12% 10%, rgba(225, 238, 255, 0.32), transparent 75%),
+        radial-gradient(1.1px 7px at 38% 45%, rgba(225, 238, 255, 0.26), transparent 75%),
+        radial-gradient(1.4px 10px at 64% 75%, rgba(225, 238, 255, 0.3), transparent 75%),
+        radial-gradient(1.1px 7px at 88% 25%, rgba(225, 238, 255, 0.24), transparent 75%),
+        radial-gradient(1.3px 8px at 6% 65%, rgba(225, 238, 255, 0.22), transparent 75%);
+    background-repeat: repeat;
+    background-size: 70px 110px;
+    animation: drizzle-front 2s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+@keyframes drizzle-front{
+    from{ background-position: 0 -110px; }
+    to{ background-position: 0 0; }
+}
+.side-container{
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: clamp(200px, 24vw, 250px);
+    padding: clamp(24px, 3vw, 40px);
+    height: 100%;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(22.5px);
+
+
+}
+.side-container::-webkit-scrollbar{
+    display: none;
+}
+.side-blur{
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+/* search bar */
+.search-form{
+    width: 100%;
+}
+.search-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 55px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    transition: border-color 0.25s ease;
+}
+.search-container:focus-within{
+    border-bottom-color: #fff;
+}
+.search-icon-leading{
+    flex-shrink: 0;
+    font-size: 17px;
+    color: #fff;
+}
+.geo-input{
+    all: unset;
+    flex: 1;
+    width: 100%;
+    color: rgba(255, 255, 255, 1);
+    font-size: 16px;
+    font-weight: 600;
+}
+.geo-input::placeholder{
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 400;
+}
+.search-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: none;
+    background: none;
+    color: #fff;
+    font-size: 17px;
+    cursor: pointer;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.search-button:hover{
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+.search-button:active{
+    transform: scale(0.9);
+}
+
+/*day stats*/
+.day-stats{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 60px;
+
+}
+.day-stats__temperature{
+    color: #fff;
+    font-size: clamp(36px, 6vw, 50px);
+    font-weight: 600;
+    line-height: 100%;
+
+}
+.day-stats__temperature-value{
+    line-height: 100%;
+}
+.day-stats__feelslike{
+    color:#fff;
+    font-size: 16px;
+    font-weight:300;
+    margin-bottom: 6px;
+    margin-top: 9px;
+}
+.day-stats__conditions{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    margin-top: 25px;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+}
+
+.day-stats__conditions li{
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.day-stats__humidity,
+.day-stats__cloud {
+    color: #fff;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.day-stats__humidity-text,
+.day-stats__clouds-text {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/*main container*/
+.main-container{
+    position: relative;
+    z-index: 2;
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0 clamp(28px, 6vw, 75px);
+    background-image: url('../img/main-blur.png');
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.main-container::-webkit-scrollbar{
+    display: none;
+}
+
+.secondary-title{
+    margin-bottom: 17px;
+    color: #fff;
+    font-size: 13px;
+
+}
+.weather__primary-title{
+    margin-bottom: 16px;
+    color: #fff;
+    font-size: clamp(26px, 3.5vw, 38px);
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing: -1.9px;
+    text-transform: capitalize;
+
+}
+
+.weather__location{
+    display: flex;
+    align-items: center;
+    margin-bottom: 26px;
+
+}
+.location-icon{
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+
+}
+
+.weather__location-text{
+    color: #fff;
+    font-size: 13px;
+
+}
+.weather__location-sep{
+    margin: 0 2px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.weather__primary-stats{
+    width: 100%;
+    max-width: 360px;
+    color: #fff;
+    font-size: 13px;
+    margin-bottom: 80px;
+
+}
+/*forecats stats*/
+.forecast{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 16px;
+    column-gap: 6px;
+    width: 100%;
+    list-style: none;
+
+}
+
+.forecast-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 14px;
+    border-radius: 14px;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+.forecast-item:hover{
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-4px);
+}
+
+.forecast-time{
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.forecastWindText{
+    color: #fff;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+.forecast-temperature{
+    color: #fff;
+    font-size: 40px;
+    font-weight: 300;
+    line-height: 100%;
+}
+
+.weather-error {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    max-width: 90%;
+    margin: 15px auto;
+    padding: 12px 18px;
+    border-radius: 10px;
+    background: rgba(220, 53, 69, 0.15);
+    border: 1px solid rgba(220, 53, 69, 0.5);
+    color: #ff6b6b;
+    font-size: 14px;
+    font-weight: 500;
+    backdrop-filter: blur(8px);
+}
+
+.weather-error i {
+    font-size: 18px;
+}
+
+.forecast-graph{
+    width: 100%;
+    height: 90px;
+    margin-top: 18px;
+}
+#chart {
+    width: 100%;
+    height: 100%;
+}
