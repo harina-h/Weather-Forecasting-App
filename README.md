@@ -63,18 +63,18 @@ Interactive Weather Dashboard
 ## Technologies Used
 
 - Python – Backend and machine learning
--Django – Web framework
--Pandas – Data processing
--NumPy – Numerical operations
--Scikit-learn – Machine learning
--Random Forest – Classification and regression
--Requests – API requests
--OpenWeatherMap API – Real-time weather data
--HTML5 – Frontend structure
--CSS3 – Styling and animations
--Bootstrap Icons – UI icons
--Chart.js – Forecast visualization
--python-dotenv – Environment variable management
+- Django – Web framework
+- Pandas – Data processing
+- NumPy – Numerical operations
+- Scikit-learn – Machine learning
+- Random Forest – Classification and regression
+- Requests – API requests
+- OpenWeatherMap API – Real-time weather data
+- HTML5 – Frontend structure
+- CSS3 – Styling and animations
+- Bootstrap Icons – UI icons
+- Chart.js – Forecast visualization
+- python-dotenv – Environment variable management
 
 
 ## Project Structure
@@ -157,29 +157,29 @@ The application uses Django Templates with HTML and CSS to display weather infor
 
 **The interface includes:**
 
--City search
--Current weather information
--Weather-condition-based backgrounds
--Day/night visual effects
--Forecast cards
--Temperature and humidity forecast graph
+- City search
+- Current weather information
+- Weather-condition-based backgrounds
+- Day/night visual effects
+- Forecast cards
+- Temperature and humidity forecast graph
 
 Chart.js is used for forecast visualization.
 
 ## Key Highlights
 
--Integrated real-time weather API data with machine learning
--Implemented both classification and regression models
--Used Random Forest algorithms for weather prediction
--Built a Django-based interactive web application
--Added dynamic weather backgrounds and animations
--Visualized forecast results using Chart.js
+- Integrated real-time weather API data with machine learning
+- Implemented both classification and regression models
+- Used Random Forest algorithms for weather prediction
+- Built a Django-based interactive web application
+- Added dynamic weather backgrounds and animations
+- Visualized forecast results using Chart.js
 
 ## Future Improvements
 
--Save and load trained models instead of retraining for every search
--Improve forecasting using dedicated time-series models such as LSTM or Prophet
--Add longer-range weather forecasting
--Add historical weather visualizations
--Improve model evaluation with additional metrics
--Deploy the application to a cloud platform
+- Save and load trained models instead of retraining for every search
+- Improve forecasting using dedicated time-series models such as LSTM or Prophet
+- Add longer-range weather forecasting
+- Add historical weather visualizations
+- Improve model evaluation with additional metrics
+- Deploy the application to a cloud platform
