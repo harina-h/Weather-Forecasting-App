@@ -36,29 +36,6 @@ A `RandomForestClassifier` is used to predict the rain-related target variable u
 
 The application generates five future predictions iteratively using the current weather value as the starting point.
 
-## Project Workflow
-
-```text
-User enters city
-        ↓
-Django receives request
-        ↓
-OpenWeatherMap API
-        ↓
-Current weather data
-        ↓
-Historical weather CSV
-        ↓
-Data cleaning and preprocessing
-        ↓
-Random Forest models
-        ↓
-Weather predictions
-        ↓
-Django Template
-        ↓
-Interactive Weather Dashboard
-```
 
 ## Technologies Used
 
@@ -76,36 +53,6 @@ Interactive Weather Dashboard
 - Chart.js – Forecast visualization
 - python-dotenv – Environment variable management
 
-
-## Project Structure
-```text
-Weather-Forecasting-App/
-│
-├── archive/
-│   └── weather.csv
-│
-├── weatherPrediction/
-│   ├── weatherPrediction/
-│   │   ├── settings.py
-│   │   ├── urls.py
-│   │   └── ...
-│   │
-│   ├── templates/
-│   │   └── weather.html
-│   │
-│   ├── static/
-│   │   ├── css/
-│   │   │   └── styles.css
-│   │   ├── js/
-│   │   │   └── chartSetup.js
-│   │   └── img/
-│   │
-│   └── views.py
-│
-├── requirements.txt
-├── .gitignore
-└── README.md
-```
 
 ## Installation
 
