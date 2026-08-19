@@ -62,7 +62,7 @@ Interactive Weather Dashboard
 
 ## Technologies Used
 
--Python – Backend and machine learning
+- Python – Backend and machine learning
 -Django – Web framework
 -Pandas – Data processing
 -NumPy – Numerical operations
